@@ -1,0 +1,318 @@
+//Global values start
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Barlow:wght@100;200;300;400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  box-sizing: border-box;
+}
+
+:root {
+  --borderColor: rgb(189, 189, 189);
+  --fillColor1: rgb(224, 224, 224);
+  --fillColor2: rgb(158, 158, 158);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Barlow", Helvetica, Sans-Serif;
+  height: 100%;
+  width: 100%;
+}
+
+@mixin dislayFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin displayFlexBetween {
+  @include dislayFlex();
+  justify-content: space-between;
+}
+
+@mixin dislapyFlexColumn {
+  @include dislayFlex();
+  flex-direction: column;
+}
+
+.main-content {
+  padding-top: 4rem;
+  height: calc(100vh - 4rem);
+  @include dislapyFlexColumn();
+}
+
+.header {
+  width: 100%;
+  z-index: 3;
+}
+.sidebar {
+  display: none;
+}
+
+.navbar {
+  @include dislayFlex();
+  position: fixed;
+  top: 0;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--borderColor);
+  padding: 0rem 2rem;
+  height: 4rem;
+  background: var(--fillColor1);
+  .logo-container {
+    font-size: 2rem;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+  }
+  .menu-buttons {
+    @include dislayFlex();
+    height: 100%;
+    .btn {
+      @include dislayFlex();
+      cursor: pointer;
+      height: 100%;
+      padding: 0 1rem;
+      border-left: 1px solid var(--borderColor);
+      transition: 0.3s all ease;
+      color: black;
+      text-decoration: none;
+    }
+    .btn:last-of-type {
+      border-right: 1px solid var(--borderColor);
+    }
+    .btn-last {
+      border-right: 1px solid var(--borderColor);
+    }
+    .btn:hover {
+      background: var(--fillColor2);
+      color: white;
+    }
+  }
+  .burger-menu {
+    display: flex;
+    display: none;
+    height: 1rem;
+    width: 3rem;
+    position: relative;
+    cursor: pointer;
+    .line {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      height: 2px;
+      width: 2rem;
+      background: black;
+      transition: 0.3s all ease;
+    }
+    .line:nth-last-child(1) {
+      top: 0;
+    }
+    .line:nth-last-child(2) {
+      top: 50%;
+    }
+    .line:nth-last-child(3) {
+      top: 100%;
+    }
+  }
+  .burger-menu-clicked {
+    .line:nth-last-child(1),
+    .line:nth-last-child(3) {
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .line:nth-last-child(2) {
+      opacity: 0;
+    }
+    .line:nth-last-child(3) {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+.form-container {
+  background: var(--fillColor1);
+  @include dislapyFlexColumn();
+  border: 1px solid var(--borderColor);
+  border-radius: 2rem;
+  padding: 3rem 5rem;
+  .form-heading {
+    margin-bottom: 2rem;
+  }
+  .btn-submit {
+    background: white;
+    outline: none;
+    border: none;
+    color: rgb(88, 88, 88);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s all ease;
+    border: 1px solid var(--borderColor);
+  }
+
+  .btn-submit:hover {
+    background: var(--fillColor2);
+    color: rgb(255, 255, 255);
+  }
+  .form-input {
+    @include dislapyFlexColumn();
+    position: relative;
+    label {
+      width: 9rem;
+      display: inline-block;
+      text-align: end;
+      padding-right: 0.5rem;
+    }
+    input {
+      border-radius: 0.5rem;
+      height: 2rem;
+      width: 20rem;
+      outline: none;
+      border: none;
+      padding-left: 0.5rem;
+      margin-right: 4rem;
+      border: 1px solid rgb(175, 175, 175);
+    }
+  }
+  .error-message {
+    @include dislayFlex();
+    color: red;
+    white-space: nowrap;
+    height: 1.5rem;
+    p {
+      margin: 0;
+    }
+  }
+
+  .message-container {
+    @include dislayFlex();
+    position: relative;
+    .user-create-message {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+    .green-text {
+      color: green;
+    }
+  }
+
+  .btn {
+    padding: 0.5rem 2rem;
+  }
+}
+
+.website-wrapper {
+  background: rgb(230, 230, 230);
+  height: 100vh;
+}
+
+@media only screen and (max-width: 420px) {
+  body {
+    height: calc(100vh - 4rem - 56px);
+  }
+
+  #root {
+    height: 100%;
+    .App {
+      height: 100%;
+    }
+  }
+
+  .website-wrapper {
+    height: 100%;
+  }
+
+  .main-content {
+    padding: 0 1rem;
+    height: 100%;
+    margin-top: 4rem;
+  }
+
+  .navbar {
+    height: 4rem;
+    padding: 0rem 1rem;
+    .menu-buttons {
+      display: none;
+    }
+    .logo-container {
+      font-size: 1.3rem;
+      width: 5rem;
+      padding: 0;
+      text-align: start;
+    }
+    .burger-menu {
+      display: flex;
+    }
+  }
+
+  .sidebar {
+    position: fixed;
+    @include dislayFlex();
+    top: 4rem;
+    width: 100%;
+    height: calc(100vh - 4rem - 56px);
+    transition: 0.5s all ease;
+    z-index: 1;
+    background: var(--fillColor1);
+    .menu-buttons {
+      @include dislapyFlexColumn();
+      .btn {
+        color: black;
+        text-decoration: none;
+        margin: 1.5rem 0;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .form-container {
+    padding: 2rem 1rem;
+    width: 100%;
+
+    .form-input {
+      width: auto;
+      flex-wrap: wrap;
+      width: 100%;
+
+      div {
+        @include dislapyFlexColumn();
+        width: 100%;
+      }
+      label {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      input {
+        width: 100%;
+
+        margin: 0;
+      }
+    }
+  }
+}
