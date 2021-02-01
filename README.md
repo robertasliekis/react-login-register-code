@@ -1,6 +1,6 @@
 # React register/login 
 
-Simple register/login website made using React and Redux.
+Simple register/login website made using React, Redux and React Router.
 
 Website link: https://robertasliekis.github.io/react-login-register/
 
